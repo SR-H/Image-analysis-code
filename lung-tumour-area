@@ -1,0 +1,13 @@
+open();
+fname = getTitle();
+showMessage("This image is called " +fname);
+run("8-bit");
+run("Morphological Filters", "operation=Closing element=Disk radius=4");
+run("Median...", "radius=10");
+setAutoThreshold("Default");
+//run("Threshold...");
+//setThreshold(9, 216);
+setOption("BlackBackground", false);
+run("Convert to Mask");
+run("Analyze Particles...", "size=1-Infinity show=Outlines display clear summarize add");
+saveAs("Results", "/Users/hyslop/Documents/HMGA2 analysis/tumour area analysis/" +fname+".csv");
